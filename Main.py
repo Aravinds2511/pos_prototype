@@ -7,10 +7,21 @@ if __name__ == "__main__":
     amount = 1
     type = "TRANSFER"
 
-    transaction = Transaction(sender, receiver, amount, type)
+    # transaction = Transaction(sender, receiver, amount, type)
+    # wallet = Wallet()
+    # signature = wallet.sign(transaction.toJson())
+    # transaction.sign(signature)
+    # signatureValid = Wallet.signatureValid(
+    #     transaction.payload(), signature, wallet.publicKeyString()
+    # )
+    # print(signatureValid)
 
     wallet = Wallet()
-    signature = wallet.sign(transaction.toJson())
+    fradulantWallet = Wallet()
 
-    transaction.sign(signature)
-    print(transaction.toJson())
+    transaction = wallet.createTransaction(receiver, amount, type)
+
+    signatureValid = Wallet.signatureValid(
+        transaction.payload(), transaction.signature, fradulantWallet.publicKeyString()
+    )
+    print(signatureValid)
