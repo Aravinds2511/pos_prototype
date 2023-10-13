@@ -1,5 +1,6 @@
 from Transaction import Transaction
 from Wallet import Wallet
+from TrasactionPool import TransitionPool
 
 if __name__ == "__main__":
     sender = "sender"
@@ -18,10 +19,18 @@ if __name__ == "__main__":
 
     wallet = Wallet()
     fradulantWallet = Wallet()
+    pool = TransitionPool()
 
     transaction = wallet.createTransaction(receiver, amount, type)
 
-    signatureValid = Wallet.signatureValid(
-        transaction.payload(), transaction.signature, fradulantWallet.publicKeyString()
-    )
-    print(signatureValid)
+    # signatureValid = Wallet.signatureValid(
+    #     transaction.payload(), transaction.signature, fradulantWallet.publicKeyString()
+    # )
+
+    if pool.transactionExists(transaction) == False:
+        pool.addTransaction(transaction)
+
+    if pool.transactionExists(transaction) == False:
+        pool.addTransaction(transaction)
+
+    print(pool.transactions)
