@@ -7,9 +7,11 @@ import pprint
 from BlockchainUtils import BlockchainUtils
 from AccountModel import AccountModel
 from Node import Node
+import sys
 
 if __name__ == "__main__":
-    node = Node()
-    print(node.blockchain)
-    print(node.transactionPool)
-    print(node.wallet)
+    ip = sys.argv[1]
+    port = int(sys.argv[2])
+
+    node = Node(ip, port)
+    node.startP2P()
