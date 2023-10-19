@@ -1,12 +1,14 @@
 from Block import Block
 from BlockchainUtils import BlockchainUtils
 from AccountModel import AccountModel
+from ProofOfStake import ProofOfStake
 
 
 class Blockchain:
     def __init__(self):
         self.blocks = [Block.genesis()]
         self.accountModel = AccountModel()
+        self.pos = ProofOfStake()
 
     def addBlock(self, block):
         self.executeTransactions(block.transactions)
@@ -63,3 +65,8 @@ class Blockchain:
         amount = transaction.amount
         self.accountModel.updateBalance(sender, -amount)
         self.accountModel.updateBalance(receiver, amount)
+
+    def nextForger(self):
+        lastBlockHash = BlockchainUtils.hash(self.blocks[-1].payload()).hexdigest()
+        nextForger = self.pos.forger(lastBlockHash)
+        return nextForger
