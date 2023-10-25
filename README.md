@@ -20,7 +20,7 @@ This project implements a prototype of a Proof of Stake (PoS) blockchain system 
 - Basic understanding of blockchain technology and Python programming
   
 ## Commands and interactions
-- To run this code, open a new command terminal and navigate to this directory. enter: python main.py 0.0.0.0 10001 5000
+- To run this code, open a new command terminal and navigate to this directory. enter: python main.py localhost 10001 5000
 - to add a new node, do the same as above but with different port, api-port
 - to run a transaction "python interaction.py"
 - to view blockchain "host://api-port/blockchain"
